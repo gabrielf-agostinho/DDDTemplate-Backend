@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DDDTemplate.API/DDDTemplate.API.csproj" />
+    <Project Path="src/DDDTemplate.Application/DDDTemplate.Application.csproj" />
+    <Project Path="src/DDDTemplate.Domain/DDDTemplate.Domain.csproj" />
+    <Project Path="src/DDDTemplate.Infrastructure/DDDTemplate.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DDDTemplate.IntegrationTests/DDDTemplate.IntegrationTests.csproj" />
+    <Project Path="tests/DDDTemplate.UnitTests/DDDTemplate.UnitTests.csproj" />
+  </Folder>
+</Solution>
