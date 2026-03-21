@@ -9,7 +9,7 @@ public static class DependencyInjector
   public static void AddRepositories(this IServiceCollection services)
   {
     services.Scan(scan => scan
-      .FromAssembliesOf(typeof(IBaseRepository<,>))
+      .FromApplicationDependencies()
       .AddClasses(classes => classes.AssignableTo(typeof(IBaseRepository<,>)))
       .AsMatchingInterface()
       .WithScopedLifetime()

@@ -9,7 +9,7 @@ public static class DependencyInjector
   public static void AddDomainServices(this IServiceCollection services)
   {
     services.Scan(scan => scan
-      .FromAssembliesOf(typeof(IBaseService<,>))
+      .FromApplicationDependencies()
       .AddClasses(classes => classes.AssignableTo(typeof(IBaseService<,>)))
       .AsMatchingInterface()
       .WithScopedLifetime()
@@ -19,7 +19,7 @@ public static class DependencyInjector
   public static void AddApplicationServices(this IServiceCollection services)
   {
     services.Scan(scan => scan
-      .FromAssembliesOf(typeof(IBaseAppService<,,,,>))
+      .FromApplicationDependencies()
       .AddClasses(classes => classes.AssignableTo(typeof(IBaseAppService<,,,,>)))
       .AsMatchingInterface()
       .WithScopedLifetime()

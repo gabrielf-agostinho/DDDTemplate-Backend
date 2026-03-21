@@ -18,7 +18,7 @@ public class Startup(IConfiguration configuration)
     });
 
     services.AddOpenApi();
-    services.AddPostgresDatabase<DatabaseContext>(Configuration.GetConnectionString("database")!, true);
+    services.AddPostgresDatabase<DatabaseContext>(Configuration.GetConnectionString("Database")!, true);
     services.AddDomainServices();
     services.AddApplicationServices();
     services.AddRepositories();
