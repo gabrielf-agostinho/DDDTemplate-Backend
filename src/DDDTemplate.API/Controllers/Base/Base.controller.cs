@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DDDTemplate.API.Controllers.Base;
 
+[ApiController]
 [Authorize]
 [Produces("application/json")]
 [Route("api/v1/[controller]")]

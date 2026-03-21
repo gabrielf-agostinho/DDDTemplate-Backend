@@ -7,6 +7,7 @@ using DDDTemplate.Application.Interfaces;
 
 namespace DDDTemplate.API.Controllers;
 
+[ApiController]
 [Authorize]
 [Produces("application/json")]
 [Route("api/v1/[controller]")]
