@@ -11,8 +11,8 @@ namespace DDDTemplate.Application.Services.Base;
 public abstract class BaseAppService<TEntity, TId, TGetDTO, TPostDTO, TPutDTO>(IBaseService<TEntity, TId> service) : IBaseAppService<TEntity, TId, TGetDTO, TPostDTO, TPutDTO>
   where TEntity : IEntity<TId>
   where TGetDTO : BaseDTO<TId>
-  where TPostDTO : BaseDTO<TId>
   where TPutDTO : BaseDTO<TId>
+  where TPostDTO : class
 {
   protected readonly IBaseService<TEntity, TId> Service = service;
 

@@ -1,3 +1,6 @@
 namespace DDDTemplate.Application.DTOs.Base;
 
-public abstract record EnumDTO(int Id, string Description) : BaseDTO<int>(Id);
+public abstract record EnumDTO : BaseDTO<int>
+{
+  public required string Description { get; init; }
+}

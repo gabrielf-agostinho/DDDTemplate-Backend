@@ -16,8 +16,8 @@ namespace DDDTemplate.API.Controllers.Base;
 public abstract class BaseController<TEntity, TId, TGetDTO, TPostDTO, TPutDTO>(IBaseAppService<TEntity, TId, TGetDTO, TPostDTO, TPutDTO> appService, IConfiguration configuration) : Controller
   where TEntity : IEntity<TId>
   where TGetDTO : BaseDTO<TId>
-  where TPostDTO : BaseDTO<TId>
   where TPutDTO : BaseDTO<TId>
+  where TPostDTO : class
 {
   protected readonly IBaseAppService<TEntity, TId, TGetDTO, TPostDTO, TPutDTO> AppService = appService;
   protected readonly IConfiguration Configuration = configuration;
