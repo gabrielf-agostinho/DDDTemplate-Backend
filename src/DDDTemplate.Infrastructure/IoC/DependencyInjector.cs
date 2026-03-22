@@ -22,6 +22,7 @@ public static class DependencyInjector
   {
     services.AddScoped<AuditableInterceptor>();
     services.AddScoped<UserTrackableInterceptor>();
+    services.AddScoped<SoftDeleteInterceptor>();
   }
 
   public static void AddPostgresDatabase<T>(this IServiceCollection services, string connectionString, bool enableSensitiveDataLogging) where T : DbContext
@@ -41,5 +42,6 @@ public static class DependencyInjector
   {
     yield return serviceProvider.GetRequiredService<AuditableInterceptor>();
     yield return serviceProvider.GetRequiredService<UserTrackableInterceptor>();
+    yield return serviceProvider.GetRequiredService<SoftDeleteInterceptor>();
   }
 }

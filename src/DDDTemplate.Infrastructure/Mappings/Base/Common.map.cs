@@ -18,5 +18,6 @@ public abstract class CommonMap<TEntity, TId> : IEntityTypeConfiguration<TEntity
     builder.Property(c => c.DeletedAt).IsRequired(false);
     builder.Property(c => c.CreatedBy).IsRequired(false);
     builder.Property(c => c.UpdatedBy).IsRequired(false);
+    builder.Property(c => c.DeletedBy).IsRequired(false);
   }
 }
