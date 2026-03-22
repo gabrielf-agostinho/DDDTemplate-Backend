@@ -38,6 +38,7 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
 
     services.AddEndpointsApiExplorer();
     services.AddOpenApi();
+    services.AddInterceptors();
 
     if (!Environment.IsEnvironment("Testing"))
     {
