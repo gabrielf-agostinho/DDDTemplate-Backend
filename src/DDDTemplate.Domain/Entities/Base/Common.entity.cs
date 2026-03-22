@@ -2,7 +2,7 @@ using DDDTemplate.Domain.Interfaces.Entities;
 
 namespace DDDTemplate.Domain.Entities.Base;
 
-public abstract class CommonEntity<TId> : IEntity<TId>, IActivatable, IAuditable, ISoftDelete, IUserTrackable<TId>
+public abstract class CommonEntity<TId> : IEntity<TId>, IActivatable, IAuditable, ISoftDelete, IUserTrackable<TId> where TId : struct
 {
   public abstract TId Id { get; set; }
   public bool IsActive { get; set; } = true;

@@ -38,6 +38,7 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
 
     services.AddEndpointsApiExplorer();
     services.AddOpenApi();
+    services.AddDomainServices();
     services.AddInterceptors();
 
     if (!Environment.IsEnvironment("Testing"))
@@ -50,7 +51,6 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
     else
       services.AddHealthCheckConfiguration();
 
-    services.AddDomainServices();
     services.AddApplicationServices();
     services.AddRepositories();
     services.ConfigureJWT(Configuration.ReadTokenConfig());
@@ -67,6 +67,7 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
     app.UseAuthorization();
     app.MapHealthCheckConfiguration();
     app.MapControllers();
+    app.UseMiddleware<CurrentUserMiddleware>();
 
     if (Environment.IsDevelopment())
     {

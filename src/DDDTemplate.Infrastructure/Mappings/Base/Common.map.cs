@@ -4,12 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DDDTemplate.Infrastructure.Mappings.Base;
 
-public abstract class CommonMap<TEntity, TId> : IEntityTypeConfiguration<TEntity> where TEntity : CommonEntity<TId>
+public abstract class CommonMap<TEntity, TId> : IEntityTypeConfiguration<TEntity>
+  where TEntity : CommonEntity<TId>
+  where TId : struct
 {
   public virtual void Configure(EntityTypeBuilder<TEntity> builder)
   {
     builder.HasKey(c => c.Id);
     builder.Property(c => c.IsActive).HasDefaultValue(true);
     builder.Property(c => c.IsDeleted).HasDefaultValue(false);
+    builder.Property(c => c.CreatedAt).IsRequired(false);
+    builder.Property(c => c.UpdatedAt).IsRequired(false);
+    builder.Property(c => c.DeletedAt).IsRequired(false);
+    builder.Property(c => c.CreatedBy).IsRequired(false);
+    builder.Property(c => c.UpdatedBy).IsRequired(false);
   }
 }
