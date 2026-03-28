@@ -1,7 +1,8 @@
-using System.Text.Json;
 using DDDTemplate.API.Helpers;
 using DDDTemplate.Domain.Enums;
 using DDDTemplate.Domain.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DDDTemplate.API.MIddlewares;
@@ -26,12 +27,14 @@ public class ExceptionMiddleware(RequestDelegate next)
   {
     var response = BuildResponse(ex);
 
-    context.Response.ContentType = "application/json";
-    context.Response.StatusCode = (int)response.Code;
+    var actionContext = new ActionContext
+    {
+      HttpContext = context,
+      RouteData = context.GetRouteData(),
+      ActionDescriptor = new ActionDescriptor()
+    };
 
-    var json = JsonSerializer.Serialize(response);
-
-    await context.Response.WriteAsync(json);
+    await response.ExecuteResultAsync(actionContext);
   }
 
   private static Response BuildResponse(Exception ex)

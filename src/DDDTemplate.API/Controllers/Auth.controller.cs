@@ -24,6 +24,16 @@ public class AuthController(IAuthAppService authAppService) : Controller
     return new Response(EResponseCodes.OK, AuthAppService.Auth(authDTO));
   }
 
+  [HttpPost]
+  [Route("register")]
+  [AllowAnonymous]
+  public virtual IActionResult Register([FromBody] UserPostDTO userPostDTO)
+  {
+    AuthAppService.Register(userPostDTO);
+    return new Response(EResponseCodes.OK);
+  }
+  
+
   [HttpPatch]
   [Route("refresh")]
   [AllowAnonymous]

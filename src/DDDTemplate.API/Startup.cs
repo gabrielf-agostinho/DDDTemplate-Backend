@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using DDDTemplate.API.Configurations;
 using DDDTemplate.API.MIddlewares;
@@ -24,6 +25,7 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
 
   private static void ConfigureJSON(JsonOptions options)
   {
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
   }
@@ -32,6 +34,8 @@ public class Startup(IConfiguration configuration, IWebHostEnvironment environme
 
   public void ConfigureServices(IServiceCollection services)
   {
+    services.AddCors(CorsConfig.DefaultConfiguration);
+    
     services
       .AddControllers(ConfigureControllers)
       .AddJsonOptions(ConfigureJSON);

@@ -23,7 +23,7 @@ public class SoftDeleteInterceptor(ICurrentUserService currentUserService) : Sav
     {
       if (entry.Entity is ISoftDelete<Guid> softDelete)
       {
-        if (!softDelete.IsDeleted)
+        if (entry.State == EntityState.Deleted && !softDelete.IsDeleted)
         {
           softDelete.IsDeleted = true;
           softDelete.DeletedAt = DateTime.UtcNow;

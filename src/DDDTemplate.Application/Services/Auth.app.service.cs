@@ -114,6 +114,15 @@ public class AuthAppService(IUserService userService, ITokenConfig tokenConfig) 
     return token;
   }
 
+  public void Register(UserPostDTO userPostDTO)
+  {
+    if (UserService.IsEmailRegistered(userPostDTO.Email))
+      throw new CustomExceptions.EmailAlreadyRegisteredException(userPostDTO.Email);
+
+    var user = userPostDTO.Adapt<User>();
+    UserService.Insert(user);
+  }
+
   public UserGetDTO CurrentUser(string authorization)
   {
     var userId = GetUserIdFromAuthorization(authorization);

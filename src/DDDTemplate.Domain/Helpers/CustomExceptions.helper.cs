@@ -39,6 +39,11 @@ public static class CustomExceptions
     public override EResponseCodes ResponseCode => EResponseCodes.NOT_FOUND;
   }
 
+  public class EmailAlreadyRegisteredException(string email) : CustomException($"The email {email} is already registered.")
+  {
+    public override EResponseCodes ResponseCode => EResponseCodes.BAD_REQUEST;
+  }
+
   public class WrongPasswordException(string email) : CustomException($"Wrong password for email: {email}.")
   {
     public override EResponseCodes ResponseCode => EResponseCodes.BAD_REQUEST;
