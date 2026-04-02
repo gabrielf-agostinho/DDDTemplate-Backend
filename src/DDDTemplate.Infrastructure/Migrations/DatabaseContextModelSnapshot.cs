@@ -194,10 +194,6 @@ namespace DDDTemplate.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("user_id");
 
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id1");
-
                     b.HasKey("Id")
                         .HasName("pk_user_modules");
 
@@ -206,9 +202,6 @@ namespace DDDTemplate.Infrastructure.Migrations
 
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_user_modules_user_id");
-
-                    b.HasIndex("UserId1")
-                        .HasDatabaseName("ix_user_modules_user_id1");
 
                     b.ToTable("user_modules", (string)null);
                 });
@@ -231,16 +224,11 @@ namespace DDDTemplate.Infrastructure.Migrations
                         .HasConstraintName("fk_user_modules_modules_module_id");
 
                     b.HasOne("DDDTemplate.Domain.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserModules")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_user_modules_users_user_id");
-
-                    b.HasOne("DDDTemplate.Domain.Entities.User", null)
-                        .WithMany("UserModules")
-                        .HasForeignKey("UserId1")
-                        .HasConstraintName("fk_user_modules_users_user_id1");
 
                     b.Navigation("Module");
 
