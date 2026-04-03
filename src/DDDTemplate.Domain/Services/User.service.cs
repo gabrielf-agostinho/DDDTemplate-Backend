@@ -20,8 +20,16 @@ public class UserService(IUserRepository userRepository) : BaseService<User, Gui
 
   public void FillDefaultModules(User user)
   {
-    user.UserModules.Add(GetUserModule(user.Id, EModules.USERS));
+    user.UserModules.Add(GetUserModule(user.Id, EModules.ADMINISTRATIVE, true, true, true));
+    user.UserModules.Add(GetUserModule(user.Id, EModules.USERS, true, true, true));
   }
 
-  private static UserModule GetUserModule(Guid userId, EModules module) => new() { UserId = userId, ModuleId = (int)module };
+  private static UserModule GetUserModule(Guid userId, EModules module, bool insert, bool update, bool delete) => new() 
+  {
+    UserId = userId, 
+    ModuleId = (int)module,
+    Insert = insert,
+    Update = update,
+    Delete = delete
+  };
 }

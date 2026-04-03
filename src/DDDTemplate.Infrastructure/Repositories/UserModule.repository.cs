@@ -1,4 +1,5 @@
 using DDDTemplate.Domain.Entities;
+using DDDTemplate.Domain.Enums;
 using DDDTemplate.Domain.Interfaces.Repositories;
 using DDDTemplate.Infrastructure.Contexts;
 using DDDTemplate.Infrastructure.Repositories.Base;
@@ -8,19 +9,12 @@ namespace DDDTemplate.Infrastructure.Repositories;
 
 public class UserModuleRepository(DatabaseContext databaseContext) : BaseRepository<UserModule, int>(databaseContext), IUserModuleRepository
 {
-  public IEnumerable<Module> GetByUser(Guid userId)
+  public IEnumerable<EModules> GetModulesByUser(Guid userId)
   {
-    var modulesIds = DatabaseContext
+    return [.. DatabaseContext
       .Set<UserModule>()
       .Where(x => x.UserId == userId)
       .AsNoTracking()
-      .Select(x => x.ModuleId)
-      .ToList();
-
-    return DatabaseContext
-      .Set<Module>()
-      .Where(x => modulesIds.Contains(x.Id))
-      .AsNoTracking()
-      .ToList();
+      .Select(x => (EModules)x.ModuleId)];
   }
 }

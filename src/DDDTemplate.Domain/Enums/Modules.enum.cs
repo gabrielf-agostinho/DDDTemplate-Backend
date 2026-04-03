@@ -2,5 +2,6 @@ namespace DDDTemplate.Domain.Enums;
 
 public enum EModules
 {
-  USERS = 1
+  ADMINISTRATIVE = 1,
+  USERS = 2
 }
